@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DecodeJWTs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DecodeJWTs.Controllers
 {
@@ -16,6 +17,12 @@ namespace DecodeJWTs.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Admin()
         {
             return View();
         }
