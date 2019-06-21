@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.IdentityModel.Tokens;
 
 namespace DecodeJWTs
 {
@@ -57,6 +57,12 @@ namespace DecodeJWTs
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
                 options.Scope.Add("email");
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                };
 
                 options.Events = new OpenIdConnectEvents()
                 {
